@@ -7,13 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Lighter, premium deep slate instead of pitch black */
-            --bg-color: #0f172a; 
-            --card-bg: #1e293b;
-            --border-color: rgba(255, 255, 255, 0.1);
+            --bg-color: #0b0f17;
+            --card-bg: #151c2c;
+            --border-color: rgba(255, 255, 255, 0.08);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
-            --accent-color: #10b981; /* Emerald Green */
+            --accent-color: #10b981; /* Signature Victor/Christian Green */
             --accent-glow: rgba(16, 185, 129, 0.2);
         }
 
@@ -28,45 +27,126 @@
             background-color: var(--bg-color);
             color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        /* --- Animations --- */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Hero Header --- */
-        .hero-header {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
+        /* --- Main Victor Abah Split Layout --- */
+        .layout-wrapper {
+            display: grid;
+            grid-template-columns: 320px 1fr;
             gap: 50px;
-            margin-bottom: 80px;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 50px 25px;
         }
 
-        .hero-content {
+        /* --- Left Sidebar (Fixed Profile Card like Victor's site) --- */
+        .sidebar-card {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .sidebar-img-wrapper {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .sidebar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sidebar-card h2 {
+            font-size: 1.5rem;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+
+        .sidebar-role {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-contact {
+            text-align: left;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar-contact a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .sidebar-contact a:hover {
+            color: var(--accent-color);
+        }
+
+        .btn-hire {
+            display: block;
+            width: 100%;
+            background-color: var(--accent-color);
+            color: #0b0f17;
+            padding: 12px 0;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-hire:hover {
+            opacity: 0.9;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .btn-secondary-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .btn-sub {
             flex: 1;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 0;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-sub:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* --- Right Main Content --- */
+        .main-content {
+            min-width: 0; /* Prevents grid overflow */
         }
 
         .profile-badge {
@@ -74,111 +154,50 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 15px;
             display: inline-block;
         }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin: 0 0 20px 0;
+        .hero-title {
+            font-size: 3.2rem;
+            line-height: 1.15;
+            margin: 0 0 25px 0;
             font-weight: 800;
             letter-spacing: -1px;
         }
 
-        .hero-content h1 span {
+        .hero-title span {
             color: var(--accent-color);
         }
 
-        .hero-content p {
+        .hero-desc {
             color: var(--text-secondary);
             font-size: 1.1rem;
-            max-width: 550px;
-            margin-bottom: 30px;
+            line-height: 1.7;
+            margin-bottom: 50px;
         }
 
-        .hero-image {
-            flex-shrink: 0;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .profile-img {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--card-bg);
-            box-shadow: 0 0 30px var(--accent-glow), 0 10px 30px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
-        }
-
-        .profile-img:hover {
-            transform: scale(1.05);
-        }
-
-        /* --- Buttons --- */
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background-color: var(--accent-color);
-            color: #000;
-            padding: 12px 28px;
-            border-radius: 50px; /* Fully rounded like premium sites */
-            font-weight: 600;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px var(--accent-glow);
-        }
-
-        .cta-button.outline {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-        }
-
-        .cta-button.outline:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-
-        /* --- Sections & Typography --- */
-        section {
-            margin-bottom: 80px;
-            padding-top: 20px;
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
+        /* --- Works Section --- */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
             font-weight: 700;
         }
 
-        /* --- Portfolio Gallery (New) --- */
         .portfolio-filters {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             margin-bottom: 30px;
+            flex-wrap: wrap;
         }
+
         .filter-btn {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-secondary);
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 8px 18px;
+            border-radius: 50px;
             cursor: pointer;
             font-weight: 500;
             transition: all 0.2s ease;
@@ -186,14 +205,14 @@
 
         .filter-btn.active, .filter-btn:hover {
             background: var(--accent-color);
-            color: #000;
+            color: #0b0f17;
             border-color: var(--accent-color);
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
 
         .gallery-item {
@@ -201,11 +220,11 @@
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--border-color);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .gallery-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             border-color: var(--accent-color);
         }
 
@@ -213,179 +232,172 @@
             width: 100%;
             height: 220px;
             object-fit: cover;
-            background-color: #2a3b52; /* Placeholder color if image fails */
+            background-color: #1a2336;
+            display: block;
         }
 
         .gallery-info {
-            padding: 20px;
+            padding: 18px;
         }
 
         .gallery-info h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.2rem;
+            margin: 0 0 6px 0;
+            font-size: 1.1rem;
         }
 
-        /* --- Bottom CTA --- */
+        .gallery-info p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* --- CTA Card --- */
         .cta-card {
             background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            border-radius: 24px;
-            padding: 60px 40px;
-            text-align: center;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            padding: 40px;
             margin-top: 60px;
         }
 
         .cta-card h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin: 0 0 15px 0;
         }
 
-        @media (max-width: 768px) {
-            .hero-header {
-                flex-direction: column-reverse;
-                text-align: center;
+        /* Responsive */
+        @media (max-width: 900px) {
+            .layout-wrapper {
+                grid-template-columns: 1fr;
             }
-            .hero-content h1 {
-                font-size: 2.5rem;
+            .sidebar-card {
+                position: relative;
+                top: 0;
             }
-            .btn-group, .portfolio-filters {
-                justify-content: center;
+            .hero-title {
+                font-size: 2.3rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <header class="hero-header fade-in">
-            <div class="hero-content">
-                <span class="profile-badge">— Profile</span>
-                <h1>Hi, I'm <span>Samuel.</span> I design and build software.</h1>
-                <p>Software Developer & Visual Designer bridging technical execution and clean aesthetics. I specialize in building web applications, workflow automations, and stunning visual compositions.</p>
-                
-                <div class="btn-group">
-                    <a href="mailto:samuelonoja209@gmail.com" class="cta-button">Hire Me</a>
-                    <button id="copy-btn" onclick="copyEmail(event)" class="cta-button outline">📋 Copy Email</button>
-                    <a href="Samuel_Resume.pdf" class="cta-button outline" download>📥 Resume</a>
-                </div>
+    <div class="layout-wrapper">
+        
+        <!-- LEFT SIDEBAR (Victor Abah Style Profile Card) -->
+        <aside class="sidebar-card">
+            <div class="sidebar-img-wrapper">
+                <img src="headshot.jpg" alt="Samuel" class="sidebar-img">
+            </div>
+            <h2>Samuel</h2>
+            <div class="sidebar-role">Software Developer & Visual Designer</div>
+
+            <div class="sidebar-contact">
+                <div>📧 <a href="mailto:samuelonoja209@gmail.com">samuelonoja209@gmail.com</a></div>
+                <div>📍 Calabar, Nigeria</div>
+                <div>💻 <a href="https://github.com/samee-creator" target="_blank">GitHub Profile</a></div>
             </div>
 
-            <div class="hero-image">
-                <!-- Ensure your image is named exactly headshot.jpg in your folder -->
-                <img src="headshot.jpg" alt="Samuel" class="profile-img">
-            </div>
-        </header>
+            <a href="mailto:samuelonoja209@gmail.com" class="btn-hire">Hire Me</a>
 
-        <!-- Dynamic Portfolio Section -->
-        <section class="fade-in">
-            <h2>Selected Works</h2>
+            <div class="btn-secondary-group">
+                <button id="copy-btn" onclick="copyEmail(event)" class="btn-sub">📋 Copy Email</button>
+                <a href="Samuel_Resume.pdf" class="btn-sub" download>📥 Resume</a>
+            </div>
+        </aside>
+
+        <!-- RIGHT MAIN CONTENT -->
+        <main class="main-content">
             
-            <!-- JavaScript Filters -->
-            <div class="portfolio-filters">
-                <button class="filter-btn active" onclick="filterWorks('all')">All</button>
-                <button class="filter-btn" onclick="filterWorks('design')">Visual Design & Flyers</button>
-                <button class="filter-btn" onclick="filterWorks('software')">Software & Automation</button>
-            </div>
+            <!-- Hero Header Text -->
+            <section style="margin-bottom: 60px;">
+                <span class="profile-badge">— PROFILE</span>
+                <h1 class="hero-title">Hi, I'm <span>Samuel.</span> I design and build software, and keep the tech running.</h1>
+                <p class="hero-desc">
+                    Software Developer and Visual Designer bridging technical execution and clean aesthetics. I build high-performing web applications, automate complex workflows using Docker and n8n, and craft compelling visual graphics and Photoshop flyers.
+                </p>
+            </section>
 
-           <div class="gallery-grid" id="portfolio-gallery">
-            
-            <!-- Design Item 1 -->
-            <div class="gallery-item design" data-category="design">
-                <img src="design1.jpg" alt="Design 1" class="gallery-img">
-                <div class="gallery-info">
-                    <h3>Event Promotional Flyer</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin:0;">Adobe Photoshop • Visual Composition</p>
+            <!-- Selected Works Grid -->
+            <section>
+                <h2 class="section-title">Selected Works</h2>
+
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" onclick="filterWorks('all', event)">All</button>
+                    <button class="filter-btn" onclick="filterWorks('design', event)">Visual Design & Flyers</button>
+                    <button class="filter-btn" onclick="filterWorks('software', event)">Software & Automation</button>
                 </div>
-            </div>
 
-            <!-- Design Item 2 -->
-            <div class="gallery-item design" data-category="design">
-                <img src="design2.jpg" alt="Design 2" class="gallery-img">
-                <div class="gallery-info">
-                    <h3>Social Media Asset</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin:0;">Graphic Design • Typography</p>
-                </div>
-            </div>
-
-            <!-- Design Item 3 -->
-            <div class="gallery-item design" data-category="design">
-                <img src="design3.jpg" alt="Design 3" class="gallery-img">
-                <div class="gallery-info">
-                    <h3>Brand Identity Concept</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin:0;">Adobe Photoshop • Layout Design</p>
-                </div>
-            </div>
-
-            <!-- Design Item 4 -->
-            <div class="gallery-item design" data-category="design">
-                <img src="design4.jpg" alt="Design 4" class="gallery-img">
-                <div class="gallery-info">
-                    <h3>Creative Poster</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin:0;">Visual Design • Color Theory</p>
-                </div>
-            </div>
-
-            <!-- Software Item 1 -->
-            <div class="gallery-item software" data-category="software">
-                <div class="gallery-img" style="background: linear-gradient(45deg, #1e293b, #0f172a); display:flex; align-items:center; justify-content:center; color:#10b981; font-size:3rem;">💻</div>
-                <div class="gallery-info">
-                    <h3>Student Registration Portal</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin:0;">HTML • CSS • JavaScript</p>
-                </div>
-            </div>
-
-            <!-- Software Item 2 -->
-            <div class="gallery-item software" data-category="software">
-                <div class="gallery-img" style="background: linear-gradient(45deg, #1e293b, #0f172a); display:flex; align-items:center; justify-content:center; color:#10b981; font-size:3rem;">⚙️</div>
-                <div class="gallery-info">
-                    <h3>n8n Automation Workflow</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin:0;">Docker • WSL 2 • API Integrations</p>
-                </div>
-            </div>
-
-        </div>
-                <!-- Design Item 2 -->
-                <div class="gallery-item design" data-category="design">
-                    <img src="flyer2.jpg" alt="Brand Identity" class="gallery-img">
-                    <div class="gallery-info">
-                        <h3>Social Media Asset</h3>
-                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin:0;">Graphic Design • Typography</p>
+                <div class="gallery-grid" id="portfolio-gallery">
+                    
+                    <!-- Design Item 1 -->
+                    <div class="gallery-item design" data-category="design">
+                        <img src="design1.jpg" alt="Event Promotional Flyer" class="gallery-img" onerror="this.src='https://via.placeholder.com/400x300/151c2c/10b981?text=Design+1+Image'">
+                        <div class="gallery-info">
+                            <h3>Event Promotional Flyer</h3>
+                            <p>Adobe Photoshop • Visual Composition</p>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Software Item 1 -->
-                <div class="gallery-item software" data-category="software">
-                    <div class="gallery-img" style="background: linear-gradient(45deg, #1e293b, #0f172a); display:flex; align-items:center; justify-content:center; color:#10b981; font-size:3rem;">💻</div>
-                    <div class="gallery-info">
-                        <h3>Student Registration Portal</h3>
-                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin:0;">HTML • CSS • JavaScript</p>
+                    <!-- Design Item 2 -->
+                    <div class="gallery-item design" data-category="design">
+                        <img src="design2.jpg" alt="Social Media Asset" class="gallery-img" onerror="this.src='https://via.placeholder.com/400x300/151c2c/10b981?text=Design+2+Image'">
+                        <div class="gallery-info">
+                            <h3>Social Media Asset</h3>
+                            <p>Graphic Design • Typography</p>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Software Item 2 -->
-                <div class="gallery-item software" data-category="software">
-                    <div class="gallery-img" style="background: linear-gradient(45deg, #1e293b, #0f172a); display:flex; align-items:center; justify-content:center; color:#10b981; font-size:3rem;">⚙️</div>
-                    <div class="gallery-info">
-                        <h3>n8n Automation Workflow</h3>
-                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin:0;">Docker • WSL 2 • API Integrations</p>
+                    <!-- Design Item 3 -->
+                    <div class="gallery-item design" data-category="design">
+                        <img src="design3.jpg" alt="Brand Identity Concept" class="gallery-img" onerror="this.src='https://via.placeholder.com/400x300/151c2c/10b981?text=Design+3+Image'">
+                        <div class="gallery-info">
+                            <h3>Brand Identity Concept</h3>
+                            <p>Adobe Photoshop • Layout Design</p>
+                        </div>
                     </div>
-                </div>
 
+                    <!-- Design Item 4 -->
+                    <div class="gallery-item design" data-category="design">
+                        <img src="design4.jpg" alt="Creative Poster" class="gallery-img" onerror="this.src='https://via.placeholder.com/400x300/151c2c/10b981?text=Design+4+Image'">
+                        <div class="gallery-info">
+                            <h3>Creative Poster</h3>
+                            <p>Visual Design • Color Theory</p>
+                        </div>
+                    </div>
+
+                    <!-- Software Item 1 -->
+                    <div class="gallery-item software" data-category="software">
+                        <div class="gallery-img" style="background: linear-gradient(135deg, #1e293b, #0f172a); display:flex; align-items:center; justify-content:center; color:#10b981; font-size:3.5rem;">💻</div>
+                        <div class="gallery-info">
+                            <h3>Student Registration Portal</h3>
+                            <p>HTML • CSS • JavaScript</p>
+                        </div>
+                    </div>
+
+                    <!-- Software Item 2 -->
+                    <div class="gallery-item software" data-category="software">
+                        <div class="gallery-img" style="background: linear-gradient(135deg, #1e293b, #0f172a); display:flex; align-items:center; justify-content:center; color:#10b981; font-size:3.5rem;">⚙️</div>
+                        <div class="gallery-info">
+                            <h3>n8n Automation Workflow</h3>
+                            <p>Docker • WSL 2 • API Integrations</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Bottom CTA -->
+            <div class="cta-card">
+                <h2>Have a project or process to automate?</h2>
+                <p style="color: #94a3b8; margin-bottom: 25px;">Whether it's web development, workflow automation, or custom graphic design, let's connect.</p>
+                <a href="mailto:samuelonoja209@gmail.com" class="btn-hire" style="display: inline-block; width: auto; padding: 12px 35px; background: #ffffff; color: #064e3b;">Email Me</a>
             </div>
-        </section>
 
-        <!-- Bottom CTA -->
-        <div class="cta-card fade-in">
-            <h2>Ready to build something?</h2>
-            <p style="color: #94a3b8; font-size: 1.2rem; margin-bottom: 30px;">Let's collaborate on your next software project or visual design campaign.</p>
-            <a href="mailto:samuelonoja209@gmail.com" class="cta-button" style="background: #fff; color: #064e3b; padding: 15px 40px; font-size: 1.1rem;">Get in Touch</a>
-        </div>
+        </main>
     </div>
 
-    <!-- JavaScript Interactive Features -->
     <script>
-        // 1. Copy Email Function
         function copyEmail(event) {
             event.preventDefault();
             const email = "samuelonoja209@gmail.com";
@@ -403,46 +415,20 @@
             });
         }
 
-        // 2. Portfolio Filtering System
-        function filterWorks(category) {
-            // Update active button
+        function filterWorks(category, event) {
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
-            // Filter items
             const items = document.querySelectorAll('.gallery-item');
             items.forEach(item => {
                 if (category === 'all' || item.dataset.category === category) {
                     item.style.display = 'block';
-                    // Slight timeout for smooth re-flow
-                    setTimeout(() => item.style.opacity = '1', 50);
                 } else {
-                    item.style.opacity = '0';
-                    setTimeout(() => item.style.display = 'none', 300);
+                    item.style.display = 'none';
                 }
             });
         }
-
-        // 3. Scroll Fade-In Animation Observer
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(element => {
-            observer.observe(element);
-        });
     </script>
 </body>
 </html>
