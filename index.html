@@ -34,7 +34,27 @@
             background-attachment: fixed;
             line-height: 1.6;
         }
-
+.hero-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #8b5cf6;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    @media (max-width: 768px) {
+        .hero-header {
+            flex-direction: column-reverse;
+            text-align: center;
+        }
+    }
         .container {
             max-width: 850px;
             margin: 50px auto;
@@ -248,21 +268,24 @@
 <body>
 
     <div class="container">
-        <header>
-            <div class="header-content">
-                <h1>Samuel</h1>
-                <div class="subtitle">Computer Science Undergraduate & Software Engineering Trainee</div>
-                <div class="contact-links">
-                    <span>📍 Calabar, Nigeria</span> &bull; 
-                    <a href="mailto:samuelonoja209@example.com">✉️ samuelonoja209@gmail.com</a> &bull; 
-                    <a href="https://github.com/samee-creator" target="_blank">💻 GitHub Profile</a>
-                </div>
-            </div>
-            <a href="Samuel_Resume.pdf" class="btn-download" download>
-                📥 Download PDF Resume
-            </a>
-        </header>
-
+            <header class="hero-header">
+    <div class="hero-content">
+        <h1>Samuel</h1>
+        <div class="subtitle">Computer Science Undergraduate & Software Engineering Trainee</div>
+        <p>Dedicated to building software, automation workflows, and visual assets that bridge technical execution and clean design.</p>
+        <div class="contact-links">
+            <span>📍 Calabar, Nigeria</span> &bull;
+            <a href="mailto:samuelonoja209@gmail.com">📧 samuelonoja209@gmail.com</a> &bull;
+            <a href="https://github.com/samee-creator" target="_blank">💻 GitHub Profile</a>
+        </div>
+        <div style="margin-top: 15px;">
+            <a href="Samuel_Resume.pdf" class="btn-download" download>📥 Download PDF Resume</a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <img src="headshot.jpg" alt="Samuel's Headshot" class="profile-img">
+    </div>
+</header>
         <section>
             <h2>Professional Summary</h2>
             <p>Dedicated and motivated Computer Science undergraduate at the University of Calabar with hands-on experience in software development, web technologies, and version control. Actively builds applications using Python, Java, JavaScript, HTML, and CSS, complemented by professional exposure through a software engineering Industrial Training (SIWES) placement. Proficient in developer tooling including Git, GitHub, Docker, and workflow automation.</p>
