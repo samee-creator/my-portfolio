@@ -39,6 +39,7 @@
             padding: 3rem 2rem;
             box-sizing: border-box;
             border-right: 1px solid rgba(255,255,255,0.05);
+            z-index: 10;
         }
 
         .profile-img {
@@ -90,13 +91,13 @@
         }
 
         .btn-hire:hover {
-            background-color: #0ea5e9; /* Slight shift on hover */
+            background-color: #0ea5e9; 
             color: #fff;
         }
 
         /* --- RIGHT MAIN CONTENT (Scrollable) --- */
         .main-content {
-            margin-left: 320px; /* Same as sidebar width */
+            margin-left: 320px;
             padding: 5rem;
             flex: 1;
             max-width: 1200px;
@@ -138,6 +139,49 @@
             height: 1px;
             background-color: rgba(255,255,255,0.1);
             flex: 1;
+        }
+
+        /* --- PROJECTS / PORTFOLIO GALLERY --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-green);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin: 0;
         }
 
         /* --- SERVICES (What I bring) --- */
@@ -250,8 +294,46 @@
             <p class="hero-desc">I am a Computer Science student and hybrid creative specializing in bridging the gap between functional code and aesthetic design. From crafting Object-Oriented software to building n8n automation pipelines and designing striking graphics, I thrive at the intersection of logic and creativity.</p>
         </div>
 
+        <!-- SELECTED WORK (Your Images) -->
+        <div class="section-title">Selected Work</div>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <img src="portal.jpg" alt="Student Registration Portal" class="project-img" onerror="this.style.display='none'">
+                <div class="project-info">
+                    <h3>Student Registration Portal</h3>
+                    <p>HTML • CSS • JavaScript</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="n8n.jpg" alt="n8n Automation Workflow" class="project-img" onerror="this.style.display='none'">
+                <div class="project-info">
+                    <h3>n8n Automation Workflow</h3>
+                    <p>Docker • WSL 2 • APIs</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="design1.jpg" alt="Visual Design" class="project-img" onerror="this.style.display='none'">
+                <div class="project-info">
+                    <h3>Brand Identity Concept</h3>
+                    <p>Adobe Photoshop</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="design2.jpg" alt="Creative Poster" class="project-img" onerror="this.style.display='none'">
+                <div class="project-info">
+                    <h3>Creative Poster Design</h3>
+                    <p>Visual Design • Color Theory</p>
+                </div>
+            </div>
+            
+        </div>
+
         <!-- WHAT I BRING TO A TEAM -->
-        <div class="section-title">Services & Offerings</div>
+        <div class="section-title">What I bring to a team</div>
         <div class="services-grid">
             <div class="service-card">
                 <h3>Website & Software Development</h3>
@@ -274,7 +356,6 @@
         <!-- TOOLS I WORK IN DAY TO DAY -->
         <div class="section-title">Tools I work in day to day</div>
         <div class="skills-grid">
-            
             <!-- Left Column -->
             <div>
                 <div class="skill-item">
@@ -314,7 +395,6 @@
                     <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
                 </div>
             </div>
-
         </div>
     </main>
 
