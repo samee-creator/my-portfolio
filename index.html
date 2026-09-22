@@ -441,3 +441,19 @@
             <a href="https://github.com/samee-creator" target="_blank" class="cta-button" style="background: transparent; color: #f8fafc; border: 1px solid #10b981;">GitHub</a>
         </div>
     </div>
+    <script>
+    function copyEmail(event) {
+        event.preventDefault();
+        const email = "samuelonoja209@gmail.com";
+        navigator.clipboard.writeText(email).then(() => {
+            const btn = document.getElementById("copy-btn");
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "✅ Email Copied!";
+            btn.style.backgroundColor = "#059669";
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.backgroundColor = "#10b981";
+            }, 2000);
+        });
+    }
+</script>
